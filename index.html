@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>How to add an expandable detail row (master/detail) to a data grid</title>
+    <meta
+      name="description"
+      content="Click the arrow on an order row and it opens onto a nested grid of its own line items, in place, without leaving the list. Any number of rows can be open at once. Built with Lattice Grid loaded by script tag, no install and no build."
+    />
+    <link rel="icon" href="data:," />
+    <!--
+      The grid's stylesheet, from jsDelivr. The address names the exact
+      release, 1.68.2, and carries the hash of the file it expects, so the
+      page can never quietly pick up a different build than the one it was
+      checked against.
+    -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@toclocoinc/lattice-grid@1.68.2/lattice-grid.min.css"
+      integrity="sha384-mcpd7S8C5nz58bZDAXdYH6rzezEhfN7B4u2SlW426dSe20GnkxTu4TygyOILnCth"
+      crossorigin="anonymous"
+    />
+    <style>
+      body { margin: 0; font-family: system-ui, sans-serif; background: #f4f6f9; color: #131a24; }
+      header { padding: 1.5rem 1.5rem 0.5rem; max-width: 960px; margin: 0 auto; }
+      header p { color: #4a5568; }
+      header a { color: #2d6bff; }
+      main { max-width: 960px; margin: 0 auto; padding: 0 1.5rem 2.5rem; }
+      #grid { height: 420px; margin: 0 0 1rem; }
+      #stat { font-size: 0.9rem; color: #4a5568; margin: 0 0 1rem; }
+      button { font: inherit; padding: 0.5rem 0.9rem; border: 1px solid #ccd3dc; border-radius: 4px; background: #fff; color: #131a24; cursor: pointer; }
+      button:hover { background: #eef1f5; }
+      .caveats { font-size: 0.9rem; color: #4a5568; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>How to add an expandable detail row (master/detail) to a data grid</h1>
+      <p>
+        Click the arrow at the start of an order row and it opens onto a nested grid holding
+        that order's own line items, inline, beneath the row it belongs to. Any number of orders
+        can be expanded together, each with its own detail grid. Read the
+        <a href="https://www.latticegrid.dev/docs/how-to/master-detail-rows/">full how-to</a>
+        on latticegrid.dev.
+      </p>
+    </header>
+    <main>
+      <div id="grid"></div>
+      <p id="stat"></p>
+      <button id="expand-first" type="button">Expand first row</button>
+      <p class="caveats">
+        Two things to know: the detail region takes a fixed height by default, so a nested grid
+        with more rows than fit scrolls inside it rather than growing the row; and detail state
+        is not part of the data, so sorting or filtering the outer grid does not move or close an
+        open detail, it simply follows the master row wherever it now sits.
+      </p>
+    </main>
+
+    <!--
+      The library, as a classic script tag. No npm install, no bundler, no
+      type="module": the file runs as it arrives and leaves the LatticeGrid
+      global behind.
+    -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@toclocoinc/lattice-grid@1.68.2/lattice-grid.min.js"
+      integrity="sha384-vCzLyFYn0T0lz/vkdH4x0JpJZkOazZgI2LiGui7lm5uerdZd0Z46G9hr3Aq1FFPS"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./demo.js"></script>
+  </body>
+</html>
